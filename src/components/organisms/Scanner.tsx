@@ -1,10 +1,10 @@
 import ION from "@decentralized-identity/ion-tools";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import { setCookie } from "nookies";
+import { parseCookies, setCookie } from "nookies";
 import React from "react";
 
-import { COOKIE_VC_REQUEST_KEY } from "../../configs/constants";
+import { COOKIE_PIN_CODE, COOKIE_VC_REQUEST_KEY } from "../../configs/constants";
 import { proxyHttpRequest } from "../../lib/http";
 import {
   getProtectedHeaderFromVCRequest,
@@ -39,6 +39,7 @@ export const Scanner: React.FC<ScannerProps> = () => {
       jws: vcRequestInJwt,
       publicJwk: issDIDDocument.didDocument.verificationMethod[0].publicKeyJwk,
     });
+
     if (!vcRequestVerified) {
       return {
         redirect: {
@@ -48,8 +49,28 @@ export const Scanner: React.FC<ScannerProps> = () => {
       };
     }
 
-    const { vcRequestType, vcRequest } = await getRequestFromVCRequest(vcRequestInJwt);
-    setCookie(null, COOKIE_VC_REQUEST_KEY, JSON.stringify(vcRequest));
+    const { vcRequestType, vcRequest } = getRequestFromVCRequest(vcRequestInJwt);
+    // const manifestUrl = vcRequest.presentation_definition.input_descriptors[0].issuance[0].manifest;
+
+    setCookie(
+      null,
+      COOKIE_VC_REQUEST_KEY,
+      JSON.stringify({
+        presentation_definition: {
+          input_descriptors: [
+            { issuance: [{ manifest: vcRequest.presentation_definition.input_descriptors[0].issuance[0].manifest }] },
+          ],
+        },
+      })
+    );
+
+    // TODO: vc-requestから受け取った実際のPINを入れる
+    setCookie(null, COOKIE_PIN_CODE, "9999");
+
+    console.log({ vcRequestType, vcRequest });
+
+    const cookies = parseCookies();
+    console.log({ cookies });
 
     router.push(`/${vcRequestType}`);
   };

@@ -13076,6 +13076,11 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
+react-pin-input@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-pin-input/-/react-pin-input-1.0.1.tgz#be3958d43dcafb493b4ac484d078a86cf372466a"
+  integrity sha512-nppjO8ft5EJspJ9O57TMf2nMG0rBadASVSqQhFEjGio7uSrAWfwu35ZacXl4R7iGT0OKGh3rv1d5s+MWnBAzLw==
+
 react-popper-tooltip@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/react-popper-tooltip/-/react-popper-tooltip-3.1.1.tgz#329569eb7b287008f04fcbddb6370452ad3f9eac"

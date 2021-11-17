@@ -28,6 +28,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       },
     };
   }
+
   const vcRequest = JSON.parse(vcRequestString);
   const { idTokenKey, idTokenState, codeVerifier } = getAndRefreshAuthorizationContext(ctx);
   const acquiredAttestation = {};
