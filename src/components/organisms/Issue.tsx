@@ -96,18 +96,22 @@ export const Issue: React.FC<IssueProps> = ({ vcRequest, manifest, acquiredAttes
           // TODO: 後でPINコードを入力するようにする
           if (host == "self-issued.me") {
             return (
-              <Box alignItems="center" key={i}>
-                Input Pin Code
-                <PinInput
-                  length={4}
-                  initialValue=""
-                  type="numeric"
-                  inputMode="number"
-                  onComplete={(value, index) => {
-                    siop(value);
-                  }}
-                ></PinInput>
-              </Box>
+              <Flex alignItems="center" justifyContent="center" key={i}>
+                <Box>
+                  <Text mb="2" fontSize="lg" fontWeight="bold">
+                    Input Pin Code {fulfilled && <Icon w="4" h="4" color="green.400" as={BadgeCheckIcon} />}
+                  </Text>
+                  <PinInput
+                    length={4}
+                    initialValue=""
+                    type="numeric"
+                    inputMode="number"
+                    onComplete={(value, index) => {
+                      siop(value);
+                    }}
+                  ></PinInput>
+                </Box>
+              </Flex>
               // <Button key={i} onClick={() => siop("9999")} colorScheme="blue">
               //   SIOP
               // </Button>
